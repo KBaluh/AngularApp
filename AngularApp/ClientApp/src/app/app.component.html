@@ -1,10 +1,13 @@
-<div class='container-fluid'>
-  <div class='row'>
-    <div class='col-sm-3'>
-      <app-nav-menu></app-nav-menu>
-    </div>
-    <div class='col-sm-9 body-content'>
+<mat-toolbar color="primary">
+  <a [routerLink]='["/"]'><span>AngularApp</span></a>
+</mat-toolbar>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened="true">
+    <app-nav-menu></app-nav-menu>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="router-wrapper">
       <router-outlet></router-outlet>
     </div>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>
