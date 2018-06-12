@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <a [routerLink]='["/"]'><span>AngularApp</span></a>
 </mat-toolbar>
+<!--
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened="true">
     <app-nav-menu></app-nav-menu>
@@ -11,3 +12,14 @@
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
+-->
+<mat-sidenav-container class="content-container">
+  <mat-sidenav mode="side" opened>
+    <app-nav-menu></app-nav-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="router-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
