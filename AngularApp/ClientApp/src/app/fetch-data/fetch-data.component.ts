@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  templateUrl: './fetch-data.component.html',
+  styleUrls: ['./fetch-data.component.css']
 })
 export class FetchDataComponent {
   public forecasts: WeatherForecast[];
+  columnsToDisplay = ['temperatureC', 'temperatureF', 'dateFormatted', 'summary'];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<WeatherForecast[]>(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
