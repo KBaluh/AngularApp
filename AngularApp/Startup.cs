@@ -1,3 +1,6 @@
+using DBRepository;
+using DBRepository.Interfaces;
+using DBRepository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +30,10 @@ namespace AngularApp
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
+            services.AddScoped<ITaskRepository>(provider => new TaskRepository(connectionString, provider.GetService<IRepositoryContextFactory>()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

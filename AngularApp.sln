@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularApp", "AngularApp\An
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{AA9FCEA5-BE70-4CF3-9387-F7B5434D7427}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBRepository", "DBRepository\DBRepository.csproj", "{F2D95490-EE32-4ABB-BF30-18554CF6B42A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AA9FCEA5-BE70-4CF3-9387-F7B5434D7427}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA9FCEA5-BE70-4CF3-9387-F7B5434D7427}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA9FCEA5-BE70-4CF3-9387-F7B5434D7427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D95490-EE32-4ABB-BF30-18554CF6B42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D95490-EE32-4ABB-BF30-18554CF6B42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D95490-EE32-4ABB-BF30-18554CF6B42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D95490-EE32-4ABB-BF30-18554CF6B42A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
