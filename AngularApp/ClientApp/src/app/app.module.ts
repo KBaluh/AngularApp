@@ -20,6 +20,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { TasksComponent } from './tasks/tasks.component';
 
+import { TaskService } from '../services/task/task.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,7 @@ import { TasksComponent } from './tasks/tasks.component';
     ]),
     MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatTableModule, MatPaginatorModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
