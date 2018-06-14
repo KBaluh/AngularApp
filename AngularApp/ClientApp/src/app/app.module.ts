@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { TasksComponent } from './tasks/tasks.component';
 
@@ -40,7 +41,7 @@ import { TasksComponent } from './tasks/tasks.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'tasks', component: TasksComponent }
     ]),
-    MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatTableModule
+    MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatTableModule, MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

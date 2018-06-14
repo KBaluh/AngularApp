@@ -2,9 +2,9 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!dataSource"><em>Loading...</em></p>
 
-<table mat-table [dataSource]="forecasts" *ngIf="forecasts">
+<table mat-table [dataSource]="dataSource" *ngIf="dataSource">
   <ng-container matColumnDef="dateFormatted">
     <th mat-header-cell *matHeaderCellDef> Date </th>
     <td mat-cell *matCellDef="let forecast"> {{forecast.dateFormatted}} </td>
@@ -25,3 +25,4 @@
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 </table>
+<mat-paginator #weatherPaginator [pageSize]="2" [pageSizeOptions]="[2, 3]"></mat-paginator>
