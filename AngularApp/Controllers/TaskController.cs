@@ -29,5 +29,11 @@ namespace AngularApp.Controllers
         {
             await repository.Append(model);
         }
+
+        [HttpPost("[action]")]
+        public async Task RemoveById(int id)
+        {
+            await repository.RemoveById(id);
+        }
     }
 }

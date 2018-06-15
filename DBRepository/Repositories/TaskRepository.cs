@@ -39,5 +39,15 @@ namespace DBRepository.Repositories
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task RemoveById(int id)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                TaskModel model = await context.Tasks.FirstOrDefaultAsync(x => x.TaskModelId == id);
+                context.Tasks.Remove(model);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

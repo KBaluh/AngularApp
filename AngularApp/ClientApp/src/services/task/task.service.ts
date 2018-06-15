@@ -25,4 +25,14 @@ export class TaskService {
     };
     return this.http.post<TaskModel>(this.baseUrl + "Append", model, httpOptions);
   }
+
+  removeById(id: number): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'/*,
+        'Authorization': 'my-auth-token'*/
+      })
+    };
+    return this.http.post(this.baseUrl + "RemoveById", id, httpOptions);
+  }
 }
