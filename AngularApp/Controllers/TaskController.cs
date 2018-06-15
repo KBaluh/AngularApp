@@ -23,5 +23,11 @@ namespace AngularApp.Controllers
         {
             return await repository.GetAll();
         }
+
+        [HttpPost("[action]")]
+        public async Task Append([FromBody]TaskModel model)
+        {
+            await repository.Append(model);
+        }
     }
 }

@@ -1,0 +1,36 @@
+<div *ngIf="!data">Loading...</div>
+<div *ngIf="data">
+  <h2 mat-dialog-title>{{data.title}}</h2>
+  <mat-dialog-content class="task-card">
+    <div>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="data.title">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Body</mat-label>
+        <textarea matInput rows="6" [(ngModel)]="data.body"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Start date</mat-label>
+        <input matInput [matDatepicker]="startDate" [(ngModel)]="data.startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>End date</mat-label>
+        <input matInput [matDatepicker]="endDate" [(ngModel)]="data.endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDate" ></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button (click)="saveData()">Save</button>
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</div>

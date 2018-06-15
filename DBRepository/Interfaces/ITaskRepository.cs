@@ -8,5 +8,6 @@ namespace DBRepository.Interfaces
     {
         Task<List<TaskModel>> GetAll();
         Task<TaskModel> GetById(int id);
+        Task Append(TaskModel model);
     }
 }

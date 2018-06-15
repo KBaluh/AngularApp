@@ -15,4 +15,14 @@ export class TaskService {
   getTasks(): Observable<TaskModel[]> {
     return this.http.get<TaskModel[]>(this.baseUrl + "GetAll");
   }
+
+  appendTask(model: TaskModel): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'/*,
+        'Authorization': 'my-auth-token'*/
+      })
+    };
+    return this.http.post<TaskModel>(this.baseUrl + "Append", model, httpOptions);
+  }
 }

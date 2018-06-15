@@ -11,16 +11,22 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
-import { MatButtonModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatMenuModule, MatIconModule, MatNativeDateModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
-import { TasksComponent } from './tasks/tasks.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
 
 import { TaskService } from '../services/task/task.service';
+import { TasksComponent } from './tasks/tasks.component';
+import { TaskCardComponent } from './tasks/task-card/task-card.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +35,8 @@ import { TaskService } from '../services/task/task.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    TasksComponent
+    TasksComponent,
+    TaskCardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,8 +50,10 @@ import { TaskService } from '../services/task/task.service';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'tasks', component: TasksComponent }
     ]),
-    MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatTableModule, MatPaginatorModule
+    MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule,
+    MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule
   ],
+  entryComponents: [TaskCardComponent],
   providers: [TaskService],
   bootstrap: [AppComponent]
 })

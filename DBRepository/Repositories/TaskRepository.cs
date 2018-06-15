@@ -30,5 +30,14 @@ namespace DBRepository.Repositories
                 return await query.FirstOrDefaultAsync(x => x.TaskModelId == id);
             }
         }
+
+        public async Task Append(TaskModel model)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                context.Tasks.Add(model);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
