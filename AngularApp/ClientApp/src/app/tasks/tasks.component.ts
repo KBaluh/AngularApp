@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TaskService } from '../../services/task/task.service';
 import { TaskModel } from './taskModel';
-import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatDialog, MatButton } from '@angular/material';
 import { TaskCardComponent } from './task-card/task-card.component';
 
 @Component({
@@ -41,5 +41,9 @@ export class TasksComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.loadData();
     });
+  }
+
+  editTask(id: number): void {
+    
   }
 }
