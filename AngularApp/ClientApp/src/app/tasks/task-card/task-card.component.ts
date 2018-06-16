@@ -11,16 +11,29 @@ import { debug } from 'util';
 })
 export class TaskCardComponent implements OnInit {
 
+  action: string;
+  model: TaskModel;
+
   constructor(
     public dialogRef: MatDialogRef<TaskCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TaskModel,
-    private service: TaskService
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: { action: string, model: TaskModel },
+    private service: TaskService)
+  {
+    this.action = data.action;
+    this.model = data.model;
+  }
 
   ngOnInit() {
   }
 
   saveData(): void {
-    this.service.appendTask(this.data).subscribe(result => this.dialogRef.close());
+    if (this.action === "APPEND") {
+      this.service.appendTask(this.model).subscribe(result => this.dialogRef.close());
+    } else if (this.action === "EDIT") {
+      this.service.updateTask(this.model).subscribe(result => this.dialogRef.close());
+    } else {
+      console.error("task-card.component: No action detected");
+      this.dialogRef.close();
+    }
   }
 }

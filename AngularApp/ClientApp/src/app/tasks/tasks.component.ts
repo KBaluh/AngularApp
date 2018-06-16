@@ -33,17 +33,24 @@ export class TasksComponent implements OnInit {
     let endDate = new Date();
     endDate.setDate(endDate.getDate() + 1);
     let emptyData: TaskModel = { body: '', createdDate: new Date(), startDate: new Date(), endDate: endDate, taskModelId: 0, title: '', userId: 0 };
+    this.openEditDialog(emptyData, "APPEND");
+  }
+
+  editTask(id: number): void {
+    this.service.getTask(id).subscribe(result => {
+      console.log("EditTask:" + id, result);
+      this.openEditDialog(result, "EDIT");
+    });
+  }
+
+  openEditDialog(model: TaskModel, action: string) {
     let dialogRef = this.dialog.open(TaskCardComponent, {
       width: '50vw',
-      height: '80vh',
-      data: emptyData
+      //height: '80vh',
+      data: { action: action, model: model }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.loadData();
     });
-  }
-
-  editTask(id: number): void {
-    
   }
 }

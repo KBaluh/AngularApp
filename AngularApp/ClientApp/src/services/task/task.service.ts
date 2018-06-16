@@ -16,6 +16,10 @@ export class TaskService {
     return this.http.get<TaskModel[]>(this.baseUrl + "GetAll");
   }
 
+  getTask(id: number): Observable<TaskModel> {
+    return this.http.get<TaskModel>(this.baseUrl + "GetById?id=" + id);
+  }
+
   appendTask(model: TaskModel): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -24,6 +28,16 @@ export class TaskService {
       })
     };
     return this.http.post<TaskModel>(this.baseUrl + "Append", model, httpOptions);
+  }
+
+  updateTask(model: TaskModel): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'/*,
+        'Authorization': 'my-auth-token'*/
+      })
+    };
+    return this.http.post<TaskModel>(this.baseUrl + "Update", model, httpOptions);
   }
 
   removeById(id: number): Observable<any> {

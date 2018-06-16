@@ -9,6 +9,7 @@ namespace DBRepository.Interfaces
         Task<List<TaskModel>> GetAll();
         Task<TaskModel> GetById(int id);
         Task Append(TaskModel model);
+        Task Update(TaskModel model);
         Task RemoveById(int id);
     }
 }

@@ -24,10 +24,22 @@ namespace AngularApp.Controllers
             return await repository.GetAll();
         }
 
+        [HttpGet("[action]")]
+        public async Task<TaskModel> GetById(int id)
+        {
+            return await repository.GetById(id);
+        }
+
         [HttpPost("[action]")]
         public async Task Append([FromBody]TaskModel model)
         {
             await repository.Append(model);
+        }
+
+        [HttpPost("[action]")]
+        public async Task Update([FromBody]TaskModel model)
+        {
+            await repository.Update(model);
         }
 
         [HttpPost("[action]")]

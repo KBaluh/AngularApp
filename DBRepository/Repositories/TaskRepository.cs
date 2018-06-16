@@ -40,6 +40,15 @@ namespace DBRepository.Repositories
             }
         }
 
+        public async Task Update(TaskModel model)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                context.Tasks.Update(model);
+                await context.SaveChangesAsync();
+            }
+        }
+
         public async Task RemoveById(int id)
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
