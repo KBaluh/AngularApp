@@ -26,6 +26,7 @@ import { MatCardModule } from '@angular/material/card';
 import { TaskService } from '../services/task/task.service';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskCardComponent } from './tasks/task-card/task-card.component';
+import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TaskCardComponent } from './tasks/task-card/task-card.component';
     CounterComponent,
     FetchDataComponent,
     TasksComponent,
-    TaskCardComponent
+    TaskCardComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,7 +55,7 @@ import { TaskCardComponent } from './tasks/task-card/task-card.component';
     MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule,
     MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule
   ],
-  entryComponents: [TaskCardComponent],
+  entryComponents: [TaskCardComponent, DeleteDialogComponent],
   providers: [TaskService],
   bootstrap: [AppComponent]
 })

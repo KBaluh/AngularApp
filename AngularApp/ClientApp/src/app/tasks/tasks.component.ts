@@ -3,6 +3,7 @@ import { TaskService } from '../../services/task/task.service';
 import { TaskModel } from './taskModel';
 import { MatTableDataSource, MatPaginator, MatDialog, MatButton } from '@angular/material';
 import { TaskCardComponent } from './task-card/task-card.component';
+import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-tasks',
@@ -40,6 +41,26 @@ export class TasksComponent implements OnInit {
     this.service.getTask(id).subscribe(result => {
       console.log("EditTask:" + id, result);
       this.openEditDialog(result, "EDIT");
+    });
+  }
+
+  deleteTask(id: number): void {
+    this.service.getTask(id).subscribe(task => {
+      let title = "by id: " + task.taskModelId;
+      let text = "Task: " + task.title;
+      let dialogRef = this.dialog.open(DeleteDialogComponent, {
+        width: "300px",
+        data: { title: title, text: text }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          //console.log("Delete confirm: true");
+          this.service.removeById(id).subscribe(delResult => {
+            //console.log("Delete successul. id: " + id);
+            this.loadData();
+          });
+        }
+      });
     });
   }
 

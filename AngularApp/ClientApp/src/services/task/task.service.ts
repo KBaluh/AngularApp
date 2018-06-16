@@ -47,6 +47,6 @@ export class TaskService {
         'Authorization': 'my-auth-token'*/
       })
     };
-    return this.http.post(this.baseUrl + "RemoveById", id, httpOptions);
+    return this.http.post(this.baseUrl + "RemoveById?id=" + id, httpOptions);
   }
 }
