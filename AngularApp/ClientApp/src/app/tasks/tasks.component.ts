@@ -12,7 +12,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
 export class TasksComponent implements OnInit {
   dateFormat: "dd.MM.yy hh:mm:ss";
   dataSource: MatTableDataSource<TaskModel>;
-  columnsToDisplay = ['taskModelId', 'title', 'startDate', 'endDate', 'createdDate'];
+  columnsToDisplay = ['taskModelId', 'title', 'startDate', 'endDate', 'createdDate', 'actions'];
 
   @ViewChild(MatPaginator) taskPaginator: MatPaginator;
 
