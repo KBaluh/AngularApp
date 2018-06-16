@@ -17,7 +17,7 @@ namespace DBRepository.Repositories
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
                 var query = context.Tasks.AsQueryable();
-                query = query.Take(100).OrderBy(x => x.CreatedDate);
+                query = query.Take(100).OrderByDescending(x => x.CreatedDate);
                 return await query.ToListAsync();
             }
         }

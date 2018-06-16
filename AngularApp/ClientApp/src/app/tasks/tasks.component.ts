@@ -39,7 +39,7 @@ export class TasksComponent implements OnInit {
       data: emptyData
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result', result);
+      this.loadData();
     });
   }
 }
