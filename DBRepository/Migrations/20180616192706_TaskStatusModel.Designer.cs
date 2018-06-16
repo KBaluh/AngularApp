@@ -4,14 +4,16 @@ using DBRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DBRepository.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20180616192706_TaskStatusModel")]
+    partial class TaskStatusModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,6 +41,8 @@ namespace DBRepository.Migrations
 
                     b.HasKey("TaskModelId");
 
+                    b.HasIndex("TaskStatusModelId");
+
                     b.ToTable("Tasks");
                 });
 
@@ -48,11 +52,19 @@ namespace DBRepository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("TaskStatusModelName");
+                    b.Property<string>("Name");
 
                     b.HasKey("TaskStatusModelId");
 
-                    b.ToTable("TaskStatusModels");
+                    b.ToTable("TaskStatusModel");
+                });
+
+            modelBuilder.Entity("Models.TaskModel", b =>
+                {
+                    b.HasOne("Models.TaskStatusModel", "TaskStatusModel")
+                        .WithMany()
+                        .HasForeignKey("TaskStatusModelId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

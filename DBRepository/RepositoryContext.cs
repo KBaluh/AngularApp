@@ -8,5 +8,6 @@ namespace DBRepository
         public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options) { }
 
         public DbSet<TaskModel> Tasks { get; set; }
+        public DbSet<TaskStatusModel> TaskStatusModels { get; set; }
     }
 }

@@ -21,7 +21,8 @@ namespace AngularApp.Controllers
         [HttpGet("[action]")]
         public async Task<List<TaskModel>> GetAll()
         {
-            return await repository.GetAll();
+            var result = await repository.GetAll();
+            return result;
         }
 
         [HttpGet("[action]")]
@@ -47,5 +48,11 @@ namespace AngularApp.Controllers
         {
             await repository.RemoveById(id);
         }
+
+        /*[HttpGet("[action]")]
+        public async Task<List<TaskStatusModel>> GetStatuses()
+        {
+            return await repository.GetStatuses();
+        }*/
     }
 }

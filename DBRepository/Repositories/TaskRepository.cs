@@ -17,7 +17,11 @@ namespace DBRepository.Repositories
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
                 var query = context.Tasks.AsQueryable();
-                query = query.Take(100).OrderByDescending(x => x.CreatedDate);
+                query = query
+                    .Take(100)
+                    .OrderByDescending(x => x.CreatedDate)
+                    //.Join(context.TaskStatusModels, task => task.TaskStatusModelId, status => status.TaskStatusModelId, (task, status) => new TaskModel {  })
+                    ;
                 return await query.ToListAsync();
             }
         }

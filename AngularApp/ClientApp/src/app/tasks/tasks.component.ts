@@ -13,7 +13,7 @@ import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.com
 export class TasksComponent implements OnInit {
   dateFormat: "dd.MM.yy hh:mm:ss";
   dataSource: MatTableDataSource<TaskModel>;
-  columnsToDisplay = ['taskModelId', 'title', 'startDate', 'endDate', 'createdDate', 'actions'];
+  columnsToDisplay = ['taskModelId', 'title', 'startDate', 'endDate', 'createdDate', 'status', 'actions'];
 
   @ViewChild(MatPaginator) taskPaginator: MatPaginator;
 
@@ -25,6 +25,7 @@ export class TasksComponent implements OnInit {
 
   loadData(): void {
     this.service.getTasks().subscribe(result => {
+      console.log("task list: ", result);
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.paginator = this.taskPaginator;
     });
@@ -33,7 +34,7 @@ export class TasksComponent implements OnInit {
   append(): void {
     let endDate = new Date();
     endDate.setDate(endDate.getDate() + 1);
-    let emptyData: TaskModel = { body: '', createdDate: new Date(), startDate: new Date(), endDate: endDate, taskModelId: 0, title: '', userId: 0 };
+    let emptyData: TaskModel = { body: '', createdDate: new Date(), startDate: new Date(), endDate: endDate, taskModelId: 0, title: '', userId: 0, taskStatusModelId: 1, taskStatusModels: null };
     this.openEditDialog(emptyData, "APPEND");
   }
 

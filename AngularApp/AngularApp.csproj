@@ -30,6 +30,7 @@
     <None Remove="ClientApp\src\app\tasks\taskModel.js.map" />
     <None Remove="ClientApp\src\app\tasks\taskModel.js.map" />
     <None Remove="ClientApp\src\app\tasks\taskModel.ts" />
+    <None Remove="ClientApp\src\app\tasks\taskStatusModel.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +40,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\tasks\taskModel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\tasks\taskStatusModel.ts" />
   </ItemGroup>
 
   <ItemGroup>
