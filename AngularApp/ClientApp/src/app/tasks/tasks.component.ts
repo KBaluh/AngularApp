@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 export class TasksComponent implements OnInit {
   dateFormat: "dd.MM.yy hh:mm:ss";
   dataSource: MatTableDataSource<TaskModel>;
-  columnsToDisplay = ['taskModelId', 'title', 'startDate', 'endDate', 'createdDate', 'status', 'actions'];
+  columnsToDisplay = ['taskModelId', 'title', 'status', 'startDate', 'endDate', 'createdDate', 'actions'];
 
   @ViewChild(MatPaginator) taskPaginator: MatPaginator;
 
