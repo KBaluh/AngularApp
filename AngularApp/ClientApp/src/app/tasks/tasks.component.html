@@ -7,6 +7,12 @@
     <button mat-raised-button color="primary" (click)="append()">Append</button>
   </div>
   <div class="workspace-active-filter">
+    <!--
+    <mat-button-toggle-group name="activeFilter" aria-label="Font Style">
+      <mat-button-toggle value="active">Active</mat-button-toggle>
+      <mat-button-toggle value="all">All</mat-button-toggle>
+    </mat-button-toggle-group>
+    -->
     <button mat-button [color]="filter == 'active' ? 'primary' : ''" (click)="changeFilter('active')">Active</button>
     <button mat-button [color]="filter == 'all' ? 'primary' : ''" (click)="changeFilter('all')">All</button>
   </div>
