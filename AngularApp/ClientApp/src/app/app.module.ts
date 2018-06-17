@@ -24,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { TaskService } from '../services/task/task.service';
 import { TaskStatusService } from '../services/task/task-status.service';
@@ -59,7 +60,7 @@ import { HomeService } from '../services/home/home.service';
     ]),
     MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSelectModule,
     MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule,
-    MatExpansionModule
+    MatExpansionModule, MatTooltipModule
   ],
   entryComponents: [TaskCardComponent, DeleteDialogComponent],
   providers: [TaskService, TaskStatusService, HomeService],

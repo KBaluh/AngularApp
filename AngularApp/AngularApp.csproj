@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\home\homeModel.js" />
+    <None Remove="ClientApp\src\app\home\homeModel.js" />
+    <None Remove="ClientApp\src\app\home\homeModel.js.map" />
+    <None Remove="ClientApp\src\app\home\homeModel.js.map" />
     <None Remove="ClientApp\src\app\home\homeModel.ts" />
     <None Remove="ClientApp\src\app\tasks\taskListModel.js" />
     <None Remove="ClientApp\src\app\tasks\taskListModel.js" />

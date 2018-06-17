@@ -25,5 +25,26 @@
         </mat-form-field>
       </div>
     </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Links
+        </mat-panel-title>
+        <mat-panel-description>
+          Helpful links
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-nav-list>
+        <mat-list-item *ngFor="let linkInfo of links">
+          <a matLine target="_blank" href="{{linkInfo.link}}" matTooltip="{{linkInfo.link}}">{{linkInfo.info}}</a>
+          <!--
+          <button mat-icon-button (click)="showInfo(link)">
+            <mat-icon>info</mat-icon>
+          </button>
+          -->
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
   </mat-accordion>
 </div>
