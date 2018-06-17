@@ -40,6 +40,10 @@
     <None Remove="ClientApp\src\app\tasks\taskModel.js.map" />
     <None Remove="ClientApp\src\app\tasks\taskModel.js.map" />
     <None Remove="ClientApp\src\app\tasks\taskModel.ts" />
+    <None Remove="ClientApp\src\app\tasks\taskStatusModel.js" />
+    <None Remove="ClientApp\src\app\tasks\taskStatusModel.js" />
+    <None Remove="ClientApp\src\app\tasks\taskStatusModel.js.map" />
+    <None Remove="ClientApp\src\app\tasks\taskStatusModel.js.map" />
     <None Remove="ClientApp\src\app\tasks\taskStatusModel.ts" />
   </ItemGroup>
 
