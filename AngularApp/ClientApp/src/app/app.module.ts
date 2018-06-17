@@ -23,12 +23,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { TaskService } from '../services/task/task.service';
 import { TaskStatusService } from '../services/task/task-status.service';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskCardComponent } from './tasks/task-card/task-card.component';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
+
+import { HomeService } from '../services/home/home.service';
 
 
 @NgModule({
@@ -55,10 +58,11 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
       { path: 'tasks', component: TasksComponent }
     ]),
     MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSelectModule,
-    MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule
+    MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule,
+    MatExpansionModule
   ],
   entryComponents: [TaskCardComponent, DeleteDialogComponent],
-  providers: [TaskService, TaskStatusService],
+  providers: [TaskService, TaskStatusService, HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

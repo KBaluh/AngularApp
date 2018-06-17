@@ -1,1 +1,29 @@
-Go to <a mat-button color="primary" [routerLink]='["/tasks"]'>task</a> workspace
+<div class="home-workspace">
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Task information
+        </mat-panel-title>
+        <mat-panel-description>
+          Your task progress
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="task-container" *ngIf="model">
+        <mat-form-field [floatLabel]="always">
+          <mat-label><mat-icon>stop</mat-icon> <b> Task</b> <i> not started</i></mat-label>
+          <input matInput readonly value="{{model.taskNotStarted}}">
+        </mat-form-field>
+        <mat-form-field [floatLabel]="always">
+          <mat-label><mat-icon>play_arrow</mat-icon> <b> Task</b> <i> in progress</i></mat-label>
+          <input matInput readonly value="{{model.taskInProgress}}">
+        </mat-form-field>
+        <mat-form-field [floatLabel]="always">
+          <mat-label><mat-icon>favorite</mat-icon> <b> Task</b> <i> completed</i></mat-label>
+          <input matInput readonly value="{{model.taskCompleted}}">
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,0 +1,8 @@
+.home-workspace {
+  padding-top: 10px;
+}
+
+.task-container {
+  display: flex;
+  flex-direction: column;
+}

@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\home\homeModel.ts" />
     <None Remove="ClientApp\src\app\tasks\taskListModel.js" />
     <None Remove="ClientApp\src\app\tasks\taskListModel.js" />
     <None Remove="ClientApp\src\app\tasks\taskListModel.js.map" />
@@ -44,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\home\homeModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\tasks\taskListModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\tasks\taskModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\tasks\taskStatusModel.ts" />

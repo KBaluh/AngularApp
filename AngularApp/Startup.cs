@@ -35,6 +35,7 @@ namespace AngularApp
             services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
             services.AddScoped<ITaskRepository>(provider => new TaskRepository(connectionString, provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<ITaskStatusRepository>(provider => new TaskStatusRepository(connectionString, provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped<IHomeRepository>(provider => new HomeRepository(connectionString, provider.GetService<IRepositoryContextFactory>()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
