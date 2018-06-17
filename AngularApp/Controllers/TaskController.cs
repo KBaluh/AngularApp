@@ -26,6 +26,13 @@ namespace AngularApp.Controllers
         }
 
         [HttpGet("[action]")]
+        public async Task<List<TaskListModel>> GetActive()
+        {
+            var result = await repository.GetActive();
+            return result;
+        }
+
+        [HttpGet("[action]")]
         public async Task<TaskModel> GetById(int id)
         {
             return await repository.GetById(id);

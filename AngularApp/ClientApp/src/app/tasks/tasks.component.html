@@ -6,6 +6,10 @@
   <div class="workspace-controls">
     <button mat-raised-button color="primary" (click)="append()">Append</button>
   </div>
+  <div class="workspace-active-filter">
+    <button mat-button [color]="filter == 'active' ? 'primary' : ''" (click)="changeFilter('active')">Active</button>
+    <button mat-button [color]="filter == 'all' ? 'primary' : ''" (click)="changeFilter('all')">All</button>
+  </div>
   <div class="workspace-table">
     <table mat-table [dataSource]="dataSource" *ngIf="dataSource">
       <ng-container matColumnDef="taskModelId">

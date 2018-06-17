@@ -16,11 +16,28 @@ namespace DBRepository.Repositories
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                var query = context.Tasks.AsQueryable();
-                query = query
+                var query = GetAllTasksBaseQuery(context);
+                return await query.ToListAsync();
+            }
+        }
+
+        public async Task<List<TaskListModel>> GetActive()
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var query = GetAllTasksBaseQuery(context)
+                    .Where(x => x.TaskStatusModelId == 1 || x.TaskStatusModelId == 2);
+                return await query.ToListAsync();
+            }
+        }
+
+        private IQueryable<TaskListModel> GetAllTasksBaseQuery(RepositoryContext context)
+        {
+            var query = context.Tasks.AsQueryable();
+            query = query
                     .Take(100)
                     .OrderByDescending(x => x.CreatedDate)
-                    .Join(context.TaskStatusModels, task => task.TaskStatusModelId, status => status.TaskStatusModelId, 
+                    .Join(context.TaskStatusModels, task => task.TaskStatusModelId, status => status.TaskStatusModelId,
                     (task, status) => new TaskListModel
                     {
                         TaskModelId = task.TaskModelId,
@@ -32,8 +49,7 @@ namespace DBRepository.Repositories
                         TaskStatusModelId = task.TaskStatusModelId,
                         TaskStatusModelName = status.TaskStatusModelName
                     });
-                return await query.Cast<TaskListModel>().ToListAsync();
-            }
+            return query.Cast<TaskListModel>();
         }
 
         public async Task<TaskModel> GetById(int id)

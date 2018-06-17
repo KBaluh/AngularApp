@@ -7,6 +7,8 @@ import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.com
 import { TaskStatusService } from '../../services/task/task-status.service';
 import { TaskStatusModel } from './taskStatusModel';
 import { forEach } from '@angular/router/src/utils/collection';
+import { TaskListModel } from './taskListModel';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -22,6 +24,8 @@ export class TasksComponent implements OnInit {
 
   statuses: TaskStatusModel[];
 
+  filter: string = 'active'; // active, all
+
   constructor(private service: TaskService, public dialog: MatDialog,
     private taskStatusService: TaskStatusService) { }
 
@@ -30,12 +34,23 @@ export class TasksComponent implements OnInit {
     this.taskStatusService.getAll().subscribe(statuses => this.statuses = statuses);
   }
 
+  changeFilter(filter: string): void {
+    if (!filter) {
+      filter = 'active';
+    }
+    this.filter = filter;
+    console.log(this.filter);
+    this.loadData();
+  }
+
   loadData(): void {
-    this.service.getTasks().subscribe(result => {
-      console.log("task list: ", result);
-      /*for (let i; i < result.length; i++) {
-        result[i].taskStatusModelName = this.statuses.find(x => x.taskStatusModelId == result[i].taskStatusModelId).name;
-      }*/
+    let data: Observable<TaskListModel[]>;
+    if (this.filter == 'active') {
+      data = this.service.getActive();
+    } else {
+      data = this.service.getTasks();
+    }
+    data.subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.paginator = this.taskPaginator;
     });
