@@ -16,15 +16,15 @@
 
       <div class="task-container" *ngIf="model">
         <mat-form-field [floatLabel]="always">
-          <mat-label><mat-icon>stop</mat-icon> <b> Task</b> <i> not started</i></mat-label>
+          <mat-label><mat-icon>stop</mat-icon> <b> Task</b> <i class="not-started"> not started</i></mat-label>
           <input matInput readonly value="{{model.taskNotStarted}}">
         </mat-form-field>
         <mat-form-field [floatLabel]="always">
-          <mat-label><mat-icon>play_arrow</mat-icon> <b> Task</b> <i> in progress</i></mat-label>
+          <mat-label><mat-icon>play_arrow</mat-icon> <b> Task</b> <i class="in-progress"> in progress</i></mat-label>
           <input matInput readonly value="{{model.taskInProgress}}">
         </mat-form-field>
         <mat-form-field [floatLabel]="always">
-          <mat-label><mat-icon>favorite</mat-icon> <b> Task</b> <i> completed</i></mat-label>
+          <mat-label><mat-icon>favorite</mat-icon> <b> Task</b> <i class="completed"> completed</i></mat-label>
           <input matInput readonly value="{{model.taskCompleted}}">
         </mat-form-field>
       </div>
