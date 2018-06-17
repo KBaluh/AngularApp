@@ -22,8 +22,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 import { TaskService } from '../services/task/task.service';
+import { TaskStatusService } from '../services/task/task-status.service';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskCardComponent } from './tasks/task-card/task-card.component';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
@@ -52,11 +54,11 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'tasks', component: TasksComponent }
     ]),
-    MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule,
+    MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSelectModule,
     MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule
   ],
   entryComponents: [TaskCardComponent, DeleteDialogComponent],
-  providers: [TaskService],
+  providers: [TaskService, TaskStatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

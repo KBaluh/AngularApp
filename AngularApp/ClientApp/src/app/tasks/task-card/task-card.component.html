@@ -28,6 +28,15 @@
         <mat-datepicker #endDate></mat-datepicker>
       </mat-form-field>
     </div>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Status" [(ngModel)]="model.taskStatusModelId" name="model.taskStatusModelId">
+          <mat-option *ngFor="let status of statuses" [value]="status.taskStatusModelId">
+            {{status.taskStatusModelName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-raised-button color="primary" (click)="saveData()">Save</button>

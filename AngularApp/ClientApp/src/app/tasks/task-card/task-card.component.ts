@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TaskModel } from '../taskModel';
 import { TaskService } from '../../../services/task/task.service';
 import { debug } from 'util';
+import { TaskStatusService } from '../../../services/task/task-status.service';
+import { TaskStatusModel } from '../taskStatusModel';
 
 @Component({
   selector: 'app-task-card',
@@ -14,16 +16,19 @@ export class TaskCardComponent implements OnInit {
   action: string;
   model: TaskModel;
 
+  statuses: TaskStatusModel[];
+
   constructor(
     public dialogRef: MatDialogRef<TaskCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { action: string, model: TaskModel },
-    private service: TaskService)
+    private service: TaskService, private statusService: TaskStatusService)
   {
     this.action = data.action;
     this.model = data.model;
   }
 
   ngOnInit() {
+    this.statusService.getAll().subscribe(result => this.statuses = result);
   }
 
   saveData(): void {
