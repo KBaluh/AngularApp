@@ -12,7 +12,7 @@ namespace DBRepository.Repositories
         public TaskRepository(string connectionString, IRepositoryContextFactory contextFactory)
             : base(connectionString, contextFactory) { }
 
-        public async Task<List<TaskModel>> GetAll()
+        public async Task<List<TaskListModel>> GetAll()
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
@@ -20,9 +20,19 @@ namespace DBRepository.Repositories
                 query = query
                     .Take(100)
                     .OrderByDescending(x => x.CreatedDate)
-                    //.Join(context.TaskStatusModels, task => task.TaskStatusModelId, status => status.TaskStatusModelId, (task, status) => new TaskModel {  })
-                    ;
-                return await query.ToListAsync();
+                    .Join(context.TaskStatusModels, task => task.TaskStatusModelId, status => status.TaskStatusModelId, 
+                    (task, status) => new TaskListModel
+                    {
+                        TaskModelId = task.TaskModelId,
+                        Title = task.Title,
+                        Body = task.Body,
+                        CreatedDate = task.CreatedDate,
+                        StartDate = task.StartDate,
+                        EndDate = task.EndDate,
+                        TaskStatusModelId = task.TaskStatusModelId,
+                        TaskStatusModelName = status.TaskStatusModelName
+                    });
+                return await query.Cast<TaskListModel>().ToListAsync();
             }
         }
 

@@ -1,6 +1,4 @@
-import { TaskStatusModel } from "./taskStatusModel";
-
-export interface TaskModel {
+export class TaskModel {
   taskModelId: number;
   title: string;
   body: string;
@@ -9,5 +7,4 @@ export interface TaskModel {
   endDate: Date;
   userId: number;
   taskStatusModelId: number;
-  taskStatusModels: TaskStatusModel[];
 }

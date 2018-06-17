@@ -6,7 +6,7 @@ namespace DBRepository.Interfaces
 {
     public interface ITaskRepository
     {
-        Task<List<TaskModel>> GetAll();
+        Task<List<TaskListModel>> GetAll();
         Task<TaskModel> GetById(int id);
         Task Append(TaskModel model);
         Task Update(TaskModel model);

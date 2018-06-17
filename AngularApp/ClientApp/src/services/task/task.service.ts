@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { TaskModel } from '../../app/tasks/taskModel';
+import { TaskListModel } from '../../app/tasks/taskListModel';
 import 'rxjs/add/operator/map';
 
 @Injectable({
@@ -12,8 +13,8 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  getTasks(): Observable<TaskModel[]> {
-    return this.http.get<TaskModel[]>(this.baseUrl + "GetAll");
+  getTasks(): Observable<TaskListModel[]> {
+    return this.http.get<TaskListModel[]>(this.baseUrl + "GetAll");
   }
 
   getTask(id: number): Observable<TaskModel> {

@@ -19,7 +19,7 @@ namespace AngularApp.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<List<TaskModel>> GetAll()
+        public async Task<List<TaskListModel>> GetAll()
         {
             var result = await repository.GetAll();
             return result;

@@ -25,6 +25,15 @@ export class TaskCardComponent implements OnInit {
   {
     this.action = data.action;
     this.model = data.model;
+    if (this.model == null) {
+      this.model = new TaskModel();
+      this.model.createdDate = new Date();
+      this.model.startDate = new Date();
+      let endDate = new Date();
+      endDate.setDate(endDate.getDate() + 1);
+      this.model.endDate = endDate;
+      this.model.taskStatusModelId = 1;
+    }
   }
 
   ngOnInit() {

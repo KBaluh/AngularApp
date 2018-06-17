@@ -4,6 +4,9 @@ import { TaskModel } from './taskModel';
 import { MatTableDataSource, MatPaginator, MatDialog, MatButton } from '@angular/material';
 import { TaskCardComponent } from './task-card/task-card.component';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
+import { TaskStatusService } from '../../services/task/task-status.service';
+import { TaskStatusModel } from './taskStatusModel';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-tasks',
@@ -17,25 +20,29 @@ export class TasksComponent implements OnInit {
 
   @ViewChild(MatPaginator) taskPaginator: MatPaginator;
 
-  constructor(private service: TaskService, public dialog: MatDialog) { }
+  statuses: TaskStatusModel[];
+
+  constructor(private service: TaskService, public dialog: MatDialog,
+    private taskStatusService: TaskStatusService) { }
 
   ngOnInit() {
     this.loadData();
+    this.taskStatusService.getAll().subscribe(statuses => this.statuses = statuses);
   }
 
   loadData(): void {
     this.service.getTasks().subscribe(result => {
       console.log("task list: ", result);
+      /*for (let i; i < result.length; i++) {
+        result[i].taskStatusModelName = this.statuses.find(x => x.taskStatusModelId == result[i].taskStatusModelId).name;
+      }*/
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.paginator = this.taskPaginator;
     });
   }
 
   append(): void {
-    let endDate = new Date();
-    endDate.setDate(endDate.getDate() + 1);
-    let emptyData: TaskModel = { body: '', createdDate: new Date(), startDate: new Date(), endDate: endDate, taskModelId: 0, title: '', userId: 0, taskStatusModelId: 1, taskStatusModels: null };
-    this.openEditDialog(emptyData, "APPEND");
+    this.openEditDialog(null, "APPEND");
   }
 
   editTask(id: number): void {
