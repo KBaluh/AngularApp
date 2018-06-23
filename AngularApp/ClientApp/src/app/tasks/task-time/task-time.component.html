@@ -36,7 +36,7 @@
           <td mat-cell *matCellDef="let time">
             <mat-form-field>
               <!--<mat-label>{{calcMinutes(time.startDate, time.endDate)}}</mat-label>-->
-              <input matInput [(ngModel)]="time.minutes" disabled />
+              <input matInput [(ngModel)]="time.minutes" />
             </mat-form-field>
           </td>
         </ng-container>
@@ -44,10 +44,10 @@
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let time">
             <button mat-icon-button color="primary">
-              <mat-icon aria-label="Edit" (click)="editRecord(time.taskTimeId)" title="Update">edit</mat-icon>
+              <mat-icon (click)="updateRecord(time)" title="Update">update</mat-icon>
             </button>
             <button mat-icon-button color="warn">
-              <mat-icon aria-label="Remove" (click)="deleteRecord(time.taskTimeId)" title="Delete">delete</mat-icon>
+              <mat-icon (click)="deleteRecord(time.taskTimeId)" title="Delete">delete</mat-icon>
             </button>
           </td>
         </ng-container>

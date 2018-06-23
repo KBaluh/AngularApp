@@ -36,6 +36,10 @@ export class TaskTimeComponent implements OnInit {
     });
   }
 
+  updateRecord(model: TaskTimeModel): void {
+    this.service.update(model).subscribe(x => this.loadData());
+  }
+
   deleteRecord(id: number): void {
     let title = "by id: " + id;
     let text = "Task time";

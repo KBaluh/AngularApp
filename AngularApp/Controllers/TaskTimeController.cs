@@ -43,15 +43,16 @@ namespace AngularApp.Controllers
 
         // PUT: api/TaskTime/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] TaskTime value)
+        public async Task PutAsync(int id, [FromBody] TaskTime model)
         {
+            await _repository.Update(model);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            _repository.RemoveById(id);
+            await _repository.RemoveById(id);
         }
     }
 }

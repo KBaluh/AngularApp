@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TaskTimeModel } from '../../app/tasks/task-time-model';
 import { TaskModel } from '../../app/tasks/taskModel';
@@ -18,5 +18,15 @@ export class TaskTimeService {
 
   removeById(taskTimeId: number): Observable<any> {
     return this.http.delete<TaskTimeModel>(this.baseUrl + taskTimeId);
+  }
+
+  update(model: TaskTimeModel): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'/*,
+        'Authorization': 'my-auth-token'*/
+      })
+    };
+    return this.http.put<TaskTimeModel>(this.baseUrl + model.taskModelId, model, httpOptions);
   }
 }
