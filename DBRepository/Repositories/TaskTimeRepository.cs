@@ -20,7 +20,7 @@ namespace DBRepository.Repositories
         {
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
-                return await context.TaskTimes.Where(x => x.TaskModelId == taskId).ToListAsync();
+                return await context.TaskTimes.Where(x => x.TaskModelId == taskId).OrderByDescending(x => x.TaskTimeId).ToListAsync();
             }
         }
 
