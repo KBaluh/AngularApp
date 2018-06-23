@@ -1,7 +1,29 @@
-<p>
-  Displaying task times for task with id: {{taskModelId}}
-</p>
-
-<ul *ngIf="data">
-  <li *ngFor="let record of data">[id: {{record.taskTimeId}}] Start [{{record.startDate}}] End [{{record.endDate}}]</li>
-</ul>
+<div *ngIf="data">
+  <div>
+    <button mat-fab>
+      <mat-icon (click)="onIconClick()">{{iconState}}</mat-icon>
+    </button>
+    <mat-form-field>
+      <mat-label>Fact duration (minutes)</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+  </div>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Task time
+      </mat-panel-title>
+      <mat-panel-description>
+        How many time you spent
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul>
+      <li *ngFor="let record of data">
+        id: [{{record.taskTimeId}}]
+        Start date [{{record.startDate | date:"dd.MM.yy hh:mm:ss"}}]
+        End date [{{(record.endDate != null) ? (record.endDate | date:"dd.MM.yy hh:mm:ss") : ("")}}]
+        Minutes {{calcMinutes(record.startDate, record.endDate)}}
+      </li>
+    </ul>
+  </mat-expansion-panel>
+</div>
