@@ -6,3 +6,7 @@
 .task-card .date-row {
   display: flex;
 }
+
+.task-card .task-time {
+  margin: 10px 0;
+}

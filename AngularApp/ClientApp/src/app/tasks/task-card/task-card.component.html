@@ -14,6 +14,15 @@
         <textarea matInput rows="6" [(ngModel)]="model.body"></textarea>
       </mat-form-field>
     </div>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Status" [(ngModel)]="model.taskStatusModelId" name="model.taskStatusModelId">
+          <mat-option *ngFor="let status of statuses" [value]="status.taskStatusModelId">
+            {{status.taskStatusModelName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <div class="date-row">
       <mat-form-field>
         <mat-label>Start date</mat-label>
@@ -24,7 +33,7 @@
       <mat-form-field>
         <mat-label>End date</mat-label>
         <input matInput [matDatepicker]="endDate" [(ngModel)]="model.endDate">
-        <mat-datepicker-toggle matSuffix [for]="endDate" ></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
         <mat-datepicker #endDate></mat-datepicker>
       </mat-form-field>
     </div>
@@ -37,14 +46,21 @@
         <input matInput disabled>
       </mat-form-field>
     </div>
-    <div>
-      <mat-form-field>
-        <mat-select placeholder="Status" [(ngModel)]="model.taskStatusModelId" name="model.taskStatusModelId">
-          <mat-option *ngFor="let status of statuses" [value]="status.taskStatusModelId">
-            {{status.taskStatusModelName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="task-time">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Task time
+          </mat-panel-title>
+          <mat-panel-description>
+            How many time you spent
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div>
+          Some table with task times
+        </div>
+      </mat-expansion-panel>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
