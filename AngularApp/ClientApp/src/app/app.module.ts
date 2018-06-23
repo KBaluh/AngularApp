@@ -31,10 +31,12 @@ import { TaskService } from '../services/task/task.service';
 import { TaskStatusService } from '../services/task/task-status.service';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskCardComponent } from './tasks/task-card/task-card.component';
+import { TaskTimeComponent } from './tasks/task-time/task-time.component';
+import { TaskTimeService } from '../services/task/task-time.service';
+
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 
 import { HomeService } from '../services/home/home.service';
-import { TaskTimeComponent } from './tasks/task-time/task-time.component';
 
 
 @NgModule({
@@ -66,7 +68,7 @@ import { TaskTimeComponent } from './tasks/task-time/task-time.component';
     MatExpansionModule, MatTooltipModule, MatButtonToggleModule
   ],
   entryComponents: [TaskCardComponent, DeleteDialogComponent],
-  providers: [TaskService, TaskStatusService, HomeService],
+  providers: [TaskService, TaskStatusService, HomeService, TaskTimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

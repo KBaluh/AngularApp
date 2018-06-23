@@ -1,3 +1,7 @@
 <p>
   Displaying task times for task with id: {{taskModelId}}
 </p>
+
+<ul *ngIf="data">
+  <li *ngFor="let record of data">[id: {{record.taskTimeId}}] Start [{{record.startDate}}] End [{{record.endDate}}]</li>
+</ul>

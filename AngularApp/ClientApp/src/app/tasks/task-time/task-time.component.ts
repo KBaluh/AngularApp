@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TaskTimeService } from '../../../services/task/task-time.service';
+import { TaskTimeModel } from '../task-time-model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-task-time',
@@ -8,10 +11,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TaskTimeComponent implements OnInit {
 
   @Input() taskModelId: number;
+  data: TaskTimeModel[];
 
-  constructor() { }
+  constructor(private service: TaskTimeService) { }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  loadData(): void {
+    console.log("Start task time for task id: ", this.taskModelId);
+    this.service.getByTask(this.taskModelId).subscribe(result => this.data = result);
   }
 
 }

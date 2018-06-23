@@ -7,10 +7,11 @@ import { TaskTimeModel } from '../../app/tasks/task-time-model';
   providedIn: 'root'
 })
 export class TaskTimeService {
+  private baseUrl = '/api/TaskTime/';
 
   constructor(private http: HttpClient) { }
 
   getByTask(taskModelId: number): Observable<TaskTimeModel[]> {
-    return null;
+    return this.http.get<TaskTimeModel[]>(this.baseUrl + taskModelId);
   }
 }
