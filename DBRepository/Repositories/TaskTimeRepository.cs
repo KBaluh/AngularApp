@@ -68,8 +68,8 @@ namespace DBRepository.Repositories
                 if (taskTime != null)
                 {
                     taskTime.EndDate = DateTime.Now;
-                    var minutes = (taskTime.EndDate.Value - taskTime.StartDate).TotalMinutes;
-                    taskTime.Minutes = Convert.ToInt32(minutes);
+                    var minutes = Math.Round((taskTime.EndDate.Value - taskTime.StartDate).TotalMinutes, 2);
+                    taskTime.Minutes = minutes;
                     context.Update(taskTime);
                     await context.SaveChangesAsync();
                 }
