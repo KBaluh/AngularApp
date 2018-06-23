@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task-time',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-time.component.css']
 })
 export class TaskTimeComponent implements OnInit {
+
+  @Input() taskModelId: number;
 
   constructor() { }
 
