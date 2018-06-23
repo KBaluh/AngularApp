@@ -34,6 +34,7 @@ import { TaskCardComponent } from './tasks/task-card/task-card.component';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 
 import { HomeService } from '../services/home/home.service';
+import { TaskTimeComponent } from './tasks/task-time/task-time.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { HomeService } from '../services/home/home.service';
     FetchDataComponent,
     TasksComponent,
     TaskCardComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    TaskTimeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
