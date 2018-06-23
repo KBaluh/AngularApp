@@ -1,3 +1,7 @@
 .time-table table {
   width: 100%;
 }
+
+.mat-fab {
+  margin-right: 5px;
+}
