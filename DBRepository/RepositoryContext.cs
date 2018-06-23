@@ -9,5 +9,6 @@ namespace DBRepository
 
         public DbSet<TaskModel> Tasks { get; set; }
         public DbSet<TaskStatusModel> TaskStatusModels { get; set; }
+        public DbSet<TaskTime> TaskTimes { get; set; }
     }
 }
