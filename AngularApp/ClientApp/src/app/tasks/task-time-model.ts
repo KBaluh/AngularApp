@@ -3,4 +3,5 @@ export class TaskTimeModel {
   taskModelId: number;
   startDate: Date;
   endDate?: Date;
+  minutes: number;
 }
