@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TaskTimeService } from '../../../services/task/task-time.service';
 import { TaskTimeModel } from '../task-time-model';
 import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-task-time',
@@ -11,7 +12,10 @@ import { Observable } from 'rxjs';
 export class TaskTimeComponent implements OnInit {
 
   @Input() taskModelId: number;
-  data: TaskTimeModel[];
+  @Input() totalTime: number;
+
+  dataSource: MatTableDataSource<TaskTimeModel>;
+  columnsToDisplay = ['taskTimeId', 'startDate', 'endDate', 'minutes', 'actions'];
 
   displayIcon: string;
   iconState: IconState;
@@ -25,7 +29,8 @@ export class TaskTimeComponent implements OnInit {
   loadData(): void {
     console.log("Start task time for task id: ", this.taskModelId);
     this.service.getByTask(this.taskModelId).subscribe(result => {
-      this.data = result;
+      this.dataSource = new MatTableDataSource(result);
+      this.updateTotal(result);
       this.updateIconState();
     });
   }
@@ -56,6 +61,14 @@ export class TaskTimeComponent implements OnInit {
     let diff = Math.abs(endDate.getTime() - startDate.getTime());
     let minutes = Math.floor((diff / 1000) / 60);
     return minutes;
+  }
+
+  updateTotal(data: TaskTimeModel[]): void {
+    let total = 0;
+    for (let i = 0; i < data.length; i++) {
+      total += data[i].minutes;
+    }
+    this.totalTime = total;
   }
 }
 
