@@ -50,5 +50,44 @@ namespace DBRepository.Repositories
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task<bool> HaveOpenedTime(int taskModelId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                int count = await context.TaskTimes.Where(x => x.TaskModelId == taskModelId && x.EndDate == null).CountAsync();
+                return count > 0;
+            }
+        }
+
+        public async Task CloseOpened(int taskModelId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var taskTime = await context.TaskTimes.Where(x => x.TaskModelId == taskModelId && x.EndDate == null).OrderBy(x => x.StartDate).FirstOrDefaultAsync();
+                if (taskTime != null)
+                {
+                    taskTime.EndDate = DateTime.Now;
+                    var minutes = (taskTime.EndDate.Value - taskTime.StartDate).TotalMinutes;
+                    taskTime.Minutes = Convert.ToInt32(minutes);
+                    context.Update(taskTime);
+                    await context.SaveChangesAsync();
+                }
+            }
+        }
+
+        public async Task OpenTime(int taskModelId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var model = new TaskTime
+                {
+                    TaskModelId = taskModelId,
+                    StartDate = DateTime.Now
+                };
+                context.TaskTimes.Add(model);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

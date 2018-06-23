@@ -10,5 +10,8 @@ namespace DBRepository.Interfaces
         Task Append(TaskTime model);
         Task Update(TaskTime model);
         Task RemoveById(int id);
+        Task<bool> HaveOpenedTime(int taskModelId);
+        Task CloseOpened(int taskModelId);
+        Task OpenTime(int taskModelId);
     }
 }

@@ -18,7 +18,6 @@ export class TaskTimeComponent implements OnInit {
   dataSource: MatTableDataSource<TaskTimeModel>;
   columnsToDisplay = ['taskTimeId', 'startDate', 'endDate', 'minutes', 'actions'];
 
-  displayIcon: string;
   iconState: IconState;
 
   constructor(private service: TaskTimeService, public dialog: MatDialog) { }
@@ -32,7 +31,7 @@ export class TaskTimeComponent implements OnInit {
     this.service.getByTask(this.taskModelId).subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
       this.updateTotal(result);
-      this.updateIconState();
+      this.updateIconState(result);
     });
   }
 
@@ -58,21 +57,30 @@ export class TaskTimeComponent implements OnInit {
     });
   }
 
-  updateIconState(): void {
-    // TODO: Get from service task time is finish or not and set state
-    this.iconState = IconState.Play;
-
-    // Set state value for display icon
-    this.displayIcon = this.iconState;
+  updateIconState(data: TaskTimeModel[]): void {
+    let f = data.filter(x => x.endDate == null);
+    if (f.length == 0) {
+      this.iconState = IconState.Play;
+    } else {
+      this.iconState = IconState.Stop;
+    }
   }
 
   onIconClick(): void {
-    if (this.iconState == IconState.Play) {
+    /*if (this.iconState == IconState.Play) {
       this.iconState = IconState.Stop;
     } else {
       this.iconState = IconState.Play;
-    }
-    this.displayIcon = this.iconState;
+    }*/
+    console.log("Start task time");
+    this.service.haveOpenedTime(this.taskModelId).subscribe(isOpened => {
+      console.log("TaskTime::haveOpenedTime:result", isOpened);
+      if (isOpened) {
+        this.service.closeOpened(this.taskModelId).subscribe(x => this.loadData());
+      } else {
+        this.service.openTime(this.taskModelId).subscribe(x => this.loadData());
+      }
+    });
   }
 
   calcMinutes(startDate: Date, endDate?: Date): number {

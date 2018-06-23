@@ -29,4 +29,22 @@ export class TaskTimeService {
     };
     return this.http.put<TaskTimeModel>(this.baseUrl + model.taskModelId, model, httpOptions);
   }
+
+  haveOpenedTime(taskModelId: number): Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl + "HaveOpenedTime/" + taskModelId);
+  }
+
+  closeOpened(taskModelId: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + "CloseOpened/" + taskModelId);
+  }
+
+  openTime(taskModelId: number): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'/*,
+        'Authorization': 'my-auth-token'*/
+      })
+    };
+    return this.http.post(this.baseUrl + "OpenTime", taskModelId, httpOptions);
+  }
 }

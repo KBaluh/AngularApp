@@ -54,5 +54,23 @@ namespace AngularApp.Controllers
         {
             await _repository.RemoveById(id);
         }
+
+        [HttpGet("[action]/{taskModelId}")]
+        public async Task<bool> HaveOpenedTime(int taskModelId)
+        {
+            return await _repository.HaveOpenedTime(taskModelId);
+        }
+
+        [HttpGet("[action]/{taskModelId}")]
+        public async Task CloseOpened(int taskModelId)
+        {
+            await _repository.CloseOpened(taskModelId);
+        }
+
+        [HttpPost("[action]")]
+        public async Task OpenTime([FromBody] int taskModelId)
+        {
+            await _repository.OpenTime(taskModelId);
+        }
     }
 }
