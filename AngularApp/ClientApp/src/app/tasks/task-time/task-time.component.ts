@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TaskTimeService } from '../../../services/task/task-time.service';
 import { TaskTimeModel } from '../task-time-model';
 import { Observable } from 'rxjs';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
+import { DeleteDialogComponent } from '../../shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-task-time',
@@ -20,7 +21,7 @@ export class TaskTimeComponent implements OnInit {
   displayIcon: string;
   iconState: IconState;
 
-  constructor(private service: TaskTimeService) { }
+  constructor(private service: TaskTimeService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadData();
@@ -32,6 +33,24 @@ export class TaskTimeComponent implements OnInit {
       this.dataSource = new MatTableDataSource(result);
       this.updateTotal(result);
       this.updateIconState();
+    });
+  }
+
+  deleteRecord(id: number): void {
+    let title = "by id: " + id;
+    let text = "Task time";
+    let dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: "300px",
+      data: { title: title, text: text }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        //console.log("Delete confirm: true");
+        this.service.removeById(id).subscribe(delResult => {
+          //console.log("Delete successul. id: " + id);
+          this.loadData();
+        });
+      }
     });
   }
 

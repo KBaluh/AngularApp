@@ -49,8 +49,9 @@ namespace AngularApp.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(TaskTime id)
+        public void Delete(int id)
         {
+            _repository.RemoveById(id);
         }
     }
 }
