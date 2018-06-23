@@ -1,3 +1,8 @@
 .task-card .mat-form-field {
   width: 100%;
+  margin: 0 5px;
+}
+
+.task-card .date-row {
+  display: flex;
 }

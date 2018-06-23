@@ -18,6 +18,9 @@ export class TaskCardComponent implements OnInit {
 
   statuses: TaskStatusModel[];
 
+  displayIcon: string;
+  iconState: IconState;
+
   constructor(
     public dialogRef: MatDialogRef<TaskCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { action: string, model: TaskModel },
@@ -38,6 +41,7 @@ export class TaskCardComponent implements OnInit {
 
   ngOnInit() {
     this.statusService.getAll().subscribe(result => this.statuses = result);
+    this.updateIconState();
   }
 
   saveData(): void {
@@ -50,4 +54,26 @@ export class TaskCardComponent implements OnInit {
       this.dialogRef.close();
     }
   }
+
+  updateIconState(): void {
+    // TODO: Get from service task time is finish or not and set state
+    this.iconState = IconState.Play;
+
+    // Set state value for display icon
+    this.displayIcon = this.iconState;
+  }
+
+  onIconClick(): void {
+    if (this.iconState == IconState.Play) {
+      this.iconState = IconState.Stop;
+    } else {
+      this.iconState = IconState.Play;
+    }
+    this.displayIcon = this.iconState;
+  }
+}
+
+enum IconState {
+  Play = "play_arrow",
+  Stop = "stop"
 }
