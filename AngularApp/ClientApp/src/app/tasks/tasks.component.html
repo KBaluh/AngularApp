@@ -15,6 +15,7 @@
     -->
     <button mat-button [color]="filter == 'active' ? 'primary' : ''" (click)="changeFilter('active')">Active</button>
     <button mat-button [color]="filter == 'all' ? 'primary' : ''" (click)="changeFilter('all')">All</button>
+    <button mat-button [color]="filter == 'completed' ? 'primary' : ''" (click)="changeFilter('completed')">Completed</button>
   </div>
   <div class="workspace-table">
     <table mat-table [dataSource]="dataSource" *ngIf="dataSource">

@@ -21,6 +21,10 @@ export class TaskService {
     return this.http.get<TaskListModel[]>(this.baseUrl + "GetActive");
   }
 
+  getCompleted(): Observable<TaskListModel[]> {
+    return this.http.get<TaskListModel[]>(this.baseUrl + "GetCompleted");
+  }
+
   getTask(id: number): Observable<TaskModel> {
     return this.http.get<TaskModel>(this.baseUrl + "GetById?id=" + id);
   }

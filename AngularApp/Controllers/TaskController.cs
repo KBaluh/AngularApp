@@ -33,6 +33,13 @@ namespace AngularApp.Controllers
         }
 
         [HttpGet("[action]")]
+        public async Task<List<TaskListModel>> GetCompleted()
+        {
+            var result = await repository.GetCompleted();
+            return result;
+        }
+
+        [HttpGet("[action]")]
         public async Task<TaskModel> GetById(int id)
         {
             return await repository.GetById(id);

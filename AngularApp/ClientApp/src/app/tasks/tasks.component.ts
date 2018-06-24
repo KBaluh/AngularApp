@@ -24,7 +24,7 @@ export class TasksComponent implements OnInit {
 
   statuses: TaskStatusModel[];
 
-  filter: string = 'active'; // active, all
+  filter: string = 'active'; // active, all, completed
 
   constructor(private service: TaskService, public dialog: MatDialog,
     private taskStatusService: TaskStatusService) { }
@@ -47,6 +47,8 @@ export class TasksComponent implements OnInit {
     let data: Observable<TaskListModel[]>;
     if (this.filter == 'active') {
       data = this.service.getActive();
+    } else if (this.filter == 'completed') {
+      data = this.service.getCompleted();
     } else {
       data = this.service.getTasks();
     }
