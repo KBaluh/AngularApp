@@ -26,7 +26,18 @@ namespace DBRepository.Repositories
             using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
                 var query = GetAllTasksBaseQuery(context)
-                    .Where(x => x.TaskStatusModelId == 1 || x.TaskStatusModelId == 2);
+                    .Where(x => x.TaskStatusModelId == (int)TaskModelStatus.NotStarted || 
+                                x.TaskStatusModelId == (int)TaskModelStatus.InProgress);
+                return await query.ToListAsync();
+            }
+        }
+
+        public async Task<List<TaskListModel>> GetCompleted()
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var query = GetAllTasksBaseQuery(context)
+                    .Where(x => x.TaskStatusModelId == (int)TaskModelStatus.Completed);
                 return await query.ToListAsync();
             }
         }
@@ -88,5 +99,12 @@ namespace DBRepository.Repositories
                 await context.SaveChangesAsync();
             }
         }
+    }
+
+    enum TaskModelStatus
+    {
+        NotStarted = 1,
+        InProgress = 2,
+        Completed = 3
     }
 }

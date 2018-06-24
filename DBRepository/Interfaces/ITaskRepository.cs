@@ -8,6 +8,7 @@ namespace DBRepository.Interfaces
     {
         Task<List<TaskListModel>> GetAll();
         Task<List<TaskListModel>> GetActive();
+        Task<List<TaskListModel>> GetCompleted();
         Task<TaskModel> GetById(int id);
         Task Append(TaskModel model);
         Task Update(TaskModel model);
