@@ -19,13 +19,9 @@
   </div>
   <div class="workspace-table">
     <table mat-table [dataSource]="dataSource" *ngIf="dataSource">
-      <ng-container matColumnDef="taskModelId">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let task"><button mat-button (click)="editTask(task.taskModelId)" title="Edit task by ID: {{task.taskModelId}}">{{task.taskModelId}}</button></td>
-      </ng-container>
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Title </th>
-        <td mat-cell *matCellDef="let task"> {{task.title}} </td>
+        <td mat-cell *matCellDef="let task"><button mat-button (click)="editTask(task.taskModelId)" title="Open task">{{task.title}}</button>  </td>
       </ng-container>
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef> Status </th>
