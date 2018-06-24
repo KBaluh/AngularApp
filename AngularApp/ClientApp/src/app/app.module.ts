@@ -37,6 +37,8 @@ import { TaskTimeService } from '../services/task/task-time.service';
 import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.component';
 
 import { HomeService } from '../services/home/home.service';
+import * as moment from 'moment';
+import 'moment/locale/ru';
 
 
 @NgModule({
