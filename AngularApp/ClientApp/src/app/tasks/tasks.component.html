@@ -57,6 +57,6 @@
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
     </table>
-    <mat-paginator #taskPaginator [pageSize]="20" [pageSizeOptions]="[20, 40]"></mat-paginator>
+    <mat-paginator #taskPaginator [pageSize]="10" [pageSizeOptions]="[5, 10]"></mat-paginator>
   </div>
 </div>
