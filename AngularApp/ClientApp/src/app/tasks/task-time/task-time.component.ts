@@ -27,6 +27,10 @@ export class TaskTimeComponent implements OnInit {
   }
 
   loadData(): void {
+    if (!this.taskModelId) {
+      console.log("Can't load task time, empty taskModelId");
+      return;
+    }
     console.log("Start task time for task id: ", this.taskModelId);
     this.service.getByTask(this.taskModelId).subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
