@@ -99,4 +99,14 @@ export class TasksComponent implements OnInit {
       this.loadData();
     });
   }
+
+  getColor(taskStatusModelId: number): string {
+    if (taskStatusModelId == 2) {
+      return 'green';
+    } else if (taskStatusModelId == 3) {
+      return 'blue';
+    } else {
+      return 'black';
+    }
+  }
 }
