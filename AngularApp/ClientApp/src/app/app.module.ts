@@ -39,6 +39,8 @@ import { DeleteDialogComponent } from './shared/delete-dialog/delete-dialog.comp
 import { HomeService } from '../services/home/home.service';
 import * as moment from 'moment';
 import 'moment/locale/ru';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import 'moment/locale/ru';
     TasksComponent,
     TaskCardComponent,
     DeleteDialogComponent,
-    TaskTimeComponent
+    TaskTimeComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -67,7 +70,7 @@ import 'moment/locale/ru';
     ]),
     MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSelectModule,
     MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule,
-    MatExpansionModule, MatTooltipModule, MatButtonToggleModule
+    MatExpansionModule, MatTooltipModule, MatButtonToggleModule, LayoutModule
   ],
   entryComponents: [TaskCardComponent, DeleteDialogComponent],
   providers: [TaskService, TaskStatusService, HomeService, TaskTimeService],
