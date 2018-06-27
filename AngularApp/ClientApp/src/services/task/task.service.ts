@@ -30,23 +30,11 @@ export class TaskService {
   }
 
   appendTask(model: TaskModel): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'/*,
-        'Authorization': 'my-auth-token'*/
-      })
-    };
-    return this.http.post<TaskModel>(this.baseUrl + "Append", model, httpOptions);
+    return this.http.post<TaskModel>(this.baseUrl + "Append", model);
   }
 
   updateTask(model: TaskModel): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'/*,
-        'Authorization': 'my-auth-token'*/
-      })
-    };
-    return this.http.post<TaskModel>(this.baseUrl + "Update", model, httpOptions);
+    return this.http.post<TaskModel>(this.baseUrl + "Update", model);
   }
 
   removeById(id: number): Observable<any> {
