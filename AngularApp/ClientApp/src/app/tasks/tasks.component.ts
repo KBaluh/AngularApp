@@ -58,17 +58,6 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  append(): void {
-    this.openEditDialog(null, "APPEND");
-  }
-
-  editTask(id: number): void {
-    this.service.getTask(id).subscribe(result => {
-      console.log("EditTask:" + id, result);
-      this.openEditDialog(result, "EDIT");
-    });
-  }
-
   deleteTask(id: number): void {
     this.service.getTask(id).subscribe(task => {
       let title = "by id: " + task.taskModelId;
@@ -86,17 +75,6 @@ export class TasksComponent implements OnInit {
           });
         }
       });
-    });
-  }
-
-  openEditDialog(model: TaskModel, action: string) {
-    let dialogRef = this.dialog.open(TaskCardComponent, {
-      width: '50vw',
-      //height: '80vh',
-      data: { action: action, model: model }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.loadData();
     });
   }
 

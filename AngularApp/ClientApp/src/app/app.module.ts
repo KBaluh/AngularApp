@@ -66,7 +66,8 @@ import { LayoutModule } from '@angular/cdk/layout';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'tasks', component: TasksComponent }
+      { path: 'tasks', component: TasksComponent },
+      { path: 'tasks/:id', component: TaskCardComponent }
     ]),
     MatButtonModule, MatMenuModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule, MatSelectModule,
     MatTableModule, MatPaginatorModule, MatDialogModule, MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatCardModule,

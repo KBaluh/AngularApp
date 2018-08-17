@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { HttpClient } from 'selenium-webdriver/http';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TaskModel } from '../taskModel';
 import { TaskService } from '../../../services/task/task.service';
-import { debug } from 'util';
 import { TaskStatusService } from '../../../services/task/task-status.service';
 import { TaskStatusModel } from '../taskStatusModel';
 
@@ -12,20 +12,31 @@ import { TaskStatusModel } from '../taskStatusModel';
   styleUrls: ['./task-card.component.css']
 })
 export class TaskCardComponent implements OnInit {
-
-  action: string;
-  model: TaskModel;
-
+  model: TaskModel = null;
   statuses: TaskStatusModel[];
+  action: string;
 
   constructor(
-    public dialogRef: MatDialogRef<TaskCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { action: string, model: TaskModel },
-    private service: TaskService, private statusService: TaskStatusService)
-  {
-    this.action = data.action;
-    this.model = data.model;
-    if (this.model == null) {
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private service: TaskService,
+    private statusService: TaskStatusService) { }
+
+  ngOnInit() {
+    this.statusService.getAll().subscribe(result => this.statuses = result);
+
+    let taskId = Number.parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    if (taskId) {
+      // Get by task id
+      this.action = "EDIT";
+        
+      this.service.getTask(taskId).subscribe(result => {
+        this.model = result;
+      });
+    } else {
+      // It's new task
+      this.action = "APPEND";
+        
       this.model = new TaskModel();
       this.model.createdDate = new Date();
       this.model.startDate = new Date();
@@ -36,19 +47,19 @@ export class TaskCardComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.statusService.getAll().subscribe(result => this.statuses = result);
-  }
-
   saveData(): void {
     if (this.action === "APPEND") {
-      this.service.appendTask(this.model).subscribe(result => this.dialogRef.close());
+      this.service.appendTask(this.model).subscribe(result => this.close());
     } else if (this.action === "EDIT") {
-      this.service.updateTask(this.model).subscribe(result => this.dialogRef.close());
+      this.service.updateTask(this.model).subscribe(result => this.close());
     } else {
       console.error("task-card.component: No action detected");
-      this.dialogRef.close();
+      this.close();
     }
+  }
+
+  close(): void {
+    this.router.navigate(['/tasks/']);
   }
 }
 
